@@ -1,0 +1,39 @@
+{
+    "name": "hak/payments-mpu",
+    "description": "Myanmar Payment Union And 2C2P One Stop Payment Integration Packages",
+    "authors": [
+        {
+            "name": "Htet Aung Khant",
+            "email": "info@hakhant.tech",
+            "homepage": "https://hakhant.tech",
+            "role": "Developer"
+        }
+    ],
+    "type": "library",
+    "require": {
+        "php": "^8.0",
+        "firebase/php-jwt": "^6.8",
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.10",
+        "pestphp/pest": "^2.16",
+        "pestphp/pest-plugin-laravel": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hak\\MyanmarPaymentUnion\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hak\\MyanmarPaymentUnion\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "license": "MIT"
+}
