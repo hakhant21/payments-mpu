@@ -4,5 +4,5 @@ namespace Hak\MyanmarPaymentUnion\Contracts;
 
 interface PaymentMethod
 {
-    public function handle(): array;
+    public function handle(string $secretKey): array;
 }

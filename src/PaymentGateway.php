@@ -22,26 +22,24 @@ class PaymentGateway
     {
         $parameters = array_merge([
             'merchantID' => $this->getMerchantID(),
-            'secretKey' => $this->getSecretKey(),
             'sandboxMode' => $this->getSandboxMode(),
         ], $parameters);
 
        $payload = new PaymentToken($parameters);
 
-       return $payload->handle();
+       return $payload->handle($this->getSecretKey());
     }
 
     public function inquiry(array $parameters)
     {
         $parameters = array_merge([
             'merchantID' => $this->getMerchantID(),
-            'secretKey' => $this->getSecretKey(),
             'sandboxMode' => $this->getSandboxMode(),
         ], $parameters);
 
         $inquiry = new PaymentInquiry($parameters);
 
-        return $inquiry->handle();
+        return $inquiry->handle($this->getSecretKey());
     }
 
     public function getMerchantID()
