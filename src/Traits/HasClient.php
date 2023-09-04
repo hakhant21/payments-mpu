@@ -4,7 +4,6 @@ namespace Hak\MyanmarPaymentUnion\Traits;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use PhpParser\Node\Stmt\TryCatch;
 
 trait HasClient 
 {
