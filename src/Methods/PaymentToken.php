@@ -26,7 +26,7 @@ class PaymentToken implements PaymentMethod
 
         $response = $this->send($url, $encryptedData);
 
-        if(!$response['payload']){
+        if(!array_key_exists('payload', $response)){
             return $response;
         }
 
