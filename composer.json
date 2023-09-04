@@ -18,7 +18,8 @@
     "require-dev": {
         "orchestra/testbench": "^8.10",
         "pestphp/pest": "^2.16",
-        "pestphp/pest-plugin-laravel": "^2.2"
+        "pestphp/pest-plugin-laravel": "^2.2",
+        "phpunit/phpunit": "^10.3"
     },
     "autoload": {
         "psr-4": {
@@ -36,8 +37,7 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage-html coverage"
+        "test": "vendor/bin/phpunit --coverage-html coverage"
     },
     "license": "MIT"
 }
