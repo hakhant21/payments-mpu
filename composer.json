@@ -35,5 +35,8 @@
             "pestphp/pest-plugin": true
         }
     },
+    "scripts": {
+        "test": "./vendor/bin/pest"
+    },
     "license": "MIT"
 }

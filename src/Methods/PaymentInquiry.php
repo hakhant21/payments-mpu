@@ -40,9 +40,9 @@ class PaymentInquiry implements PaymentMethod
     private function getUrl(): string
     {
         if($this->parameters['sandboxMode'] == 'true') {
-            return 'https://sandbox-pgw.2c2p.com/payment/4.1/paymentToken';
+            return 'https://sandbox-pgw.2c2p.com/payment/4.1/paymentInquiry';
         } else {
-            return 'https://pgw.2c2p.com/payment/4.1/paymentToken';
+            return 'https://pgw.2c2p.com/payment/4.1/paymentInquiry';
         }
     }
 }
