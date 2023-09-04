@@ -18,9 +18,9 @@ class PaymentInquiry implements PaymentMethod
         $this->parameters = $parameters;
     }
 
-    public function handle(): array
+    public function handle(string $secretKey): array
     {
-        $encryptedData = $this->encrypt($this->parameters, $this->parameters['secretKey']);
+        $encryptedData = $this->encrypt($this->parameters, $secretKey);
 
         $url = $this->getUrl();
 
@@ -30,7 +30,7 @@ class PaymentInquiry implements PaymentMethod
             return $response;
         }
 
-        $decryptedData = $this->decrypt($response['payload'], $this->parameters['secretKey']);
+        $decryptedData = $this->decrypt($response['payload'], $secretKey);
 
         $payload = get_object_vars($decryptedData);
 
