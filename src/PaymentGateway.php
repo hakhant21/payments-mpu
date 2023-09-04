@@ -71,4 +71,14 @@ class PaymentGateway
     {
         $this->sandboxMode = $sandboxMode;
     }
+
+    public function amount($amount)
+    {
+        return str_pad($amount, 12, '0', STR_PAD_LEFT);
+    }
+
+    public function invoiceNo($invoiceNo)
+    {
+        return str_pad($invoiceNo, 12, '0', STR_PAD_LEFT);
+    }
 }
