@@ -5,6 +5,7 @@ namespace Hak\MyanmarPaymentUnion\Methods;
 use Hak\MyanmarPaymentUnion\Traits\HasClient;
 use Hak\MyanmarPaymentUnion\Traits\HasEncryption;
 use Hak\MyanmarPaymentUnion\Contracts\PaymentMethod;
+use Hak\MyanmarPaymentUnion\Responses\InquiryResponse;
 
 class PaymentInquiry implements PaymentMethod
 {
@@ -18,7 +19,7 @@ class PaymentInquiry implements PaymentMethod
         $this->parameters = $parameters;
     }
 
-    public function handle(string $secretKey): array
+    public function handle(string $secretKey): InquiryResponse
     {
         $encryptedData = $this->encrypt($this->parameters, $secretKey);
 
@@ -27,14 +28,14 @@ class PaymentInquiry implements PaymentMethod
         $response = $this->send($url, $encryptedData);
 
         if(!array_key_exists('payload', $response)){
-            return $response;
+            return new InquiryResponse($response);
         }
 
         $decryptedData = $this->decrypt($response['payload'], $secretKey);
 
         $payload = get_object_vars($decryptedData);
 
-        return $payload;
+        return new InquiryResponse($payload);
     }
 
     private function getUrl(): string

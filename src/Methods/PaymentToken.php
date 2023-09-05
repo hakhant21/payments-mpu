@@ -5,6 +5,7 @@ namespace Hak\MyanmarPaymentUnion\Methods;
 use Hak\MyanmarPaymentUnion\Traits\HasClient;
 use Hak\MyanmarPaymentUnion\Traits\HasEncryption;
 use Hak\MyanmarPaymentUnion\Contracts\PaymentMethod;
+use Hak\MyanmarPaymentUnion\Responses\TokenResponse;
 
 class PaymentToken implements PaymentMethod
 {
@@ -18,7 +19,7 @@ class PaymentToken implements PaymentMethod
         $this->parameters = $parameters;
     }
 
-    public function handle(string $secretKey): array
+    public function handle(string $secretKey): TokenResponse
     {
         $encryptedData = $this->encrypt($this->parameters, $secretKey);
 
@@ -26,20 +27,23 @@ class PaymentToken implements PaymentMethod
 
         $response = $this->send($url, $encryptedData);
 
-        if(!array_key_exists('payload', $response)){
-            return $response;
-        }
+        if(!array_key_exists('payload', $response)) {
+            return new TokenResponse(
+                $response['respCode'],
+                $payload['respDesc']
+            );
+        } 
 
         $decryptedData = $this->decrypt($response['payload'], $secretKey);
 
         $payload = get_object_vars($decryptedData);
 
-        return [
-            'status' => $payload['respCode'],
-            'message' => $payload['respDesc'],
-            'payment_url' => $payload['webPaymentUrl'],
-            'token' => $payload['paymentToken'],
-        ];
+        return new TokenResponse(
+            $payload['respCode'],
+            $payload['respDesc'],
+            $payload['webPaymentUrl'],
+            $payload['paymentToken']
+        );
     }
 
     private function getUrl(): string

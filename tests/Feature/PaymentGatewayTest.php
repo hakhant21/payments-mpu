@@ -1,6 +1,8 @@
 <?php
 
 use Hak\MyanmarPaymentUnion\PaymentGateway;
+use Hak\MyanmarPaymentUnion\Responses\InquiryResponse;
+use Hak\MyanmarPaymentUnion\Responses\TokenResponse;
 
 beforeEach(function(){
     $this->gateway = new PaymentGateway(
@@ -22,7 +24,11 @@ it('can get payment token, payment url with token, status and message', function
         'description' => 'test payment description'
     ]);
 
-    expect($token)->toBeArray();
+    expect($token)->toBeInstanceOf(TokenResponse::class);
+    expect($token->getStatus())->toBeString();
+    expect($token->getMessage())->toBeString();
+    expect($token->getRedirectUrl())->toBeString();
+    expect($token->getToken())->toBeString();
 });
 
 it('can get payment inquiry return array of payment inquiry details', function(){
@@ -30,6 +36,12 @@ it('can get payment inquiry return array of payment inquiry details', function()
         'invoiceNo' => '000024252314'
     ]);
 
-    expect($inquiry)->toBeArray();
+    expect($inquiry->all())->toBeArray();
+    expect($inquiry->get('respCode'))->toBeString('0000');
+    expect($inquiry->get('tranRef'))->toBeString('7851993');
+    expect($inquiry->get('merchantID'))->toBeString('JT02');
+    expect($inquiry->get('currencyCode'))->toBeString('MMK');
+    expect($inquiry->get('respDesc'))->toBeString('Success');
+    expect($inquiry->get('invoiceNo'))->toBeString('000024252314');
 }); 
 
