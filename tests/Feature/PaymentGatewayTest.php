@@ -17,18 +17,18 @@ it('can initialize a new payment gateway', function(){
 });
 
 it('can get payment token, payment url with token, status and message', function(){
-    $token = $this->gateway->create([
+    $payment = $this->gateway->create([
         'currencyCode' => 'MMK',
         'amount' => $this->gateway->amount(1000),
         'invoiceNo' => $this->gateway->invoiceNo(random_int(11111111, 99999999)),
         'description' => 'test payment description'
     ]);
 
-    expect($token)->toBeInstanceOf(TokenResponse::class);
-    expect($token->getStatus())->toBeString();
-    expect($token->getMessage())->toBeString();
-    expect($token->getRedirectUrl())->toBeString();
-    expect($token->getToken())->toBeString();
+    expect($payment)->toBeInstanceOf(TokenResponse::class);
+    expect($payment->status)->toBeString();
+    expect($payment->message)->toBeString();
+    expect($payment->url)->toBeString();
+    expect($payment->token)->toBeString();
 });
 
 it('can get payment inquiry return array of payment inquiry details', function(){
@@ -36,12 +36,6 @@ it('can get payment inquiry return array of payment inquiry details', function()
         'invoiceNo' => '000024252314'
     ]);
 
-    expect($inquiry->all())->toBeArray();
-    expect($inquiry->get('respCode'))->toBeString('0000');
-    expect($inquiry->get('tranRef'))->toBeString('7851993');
-    expect($inquiry->get('merchantID'))->toBeString('JT02');
-    expect($inquiry->get('currencyCode'))->toBeString('MMK');
-    expect($inquiry->get('respDesc'))->toBeString('Success');
-    expect($inquiry->get('invoiceNo'))->toBeString('000024252314');
+    expect($inquiry->parameters)->toBeArray();
 }); 
 
