@@ -1,1 +1,1 @@
-# Payment Gateway Myanmar One Stop Payment Service 2C2P 
+# 2C2P Myanmar One Stop Payment Service Integration Package
