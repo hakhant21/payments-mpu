@@ -7,11 +7,11 @@ use Hak\MyanmarPaymentUnion\Methods\PaymentToken;
 
 class PaymentGateway 
 {
-    private $merchantID;
-    private $secretKey;
-    private $sandboxMode;
-
-    public function __construct(string $merchantID = null, string $secretKey = null,$sandboxMode = true)
+    public function __construct(
+        private string $merchantID = '',
+        private string $secretKey = '',
+        private bool $sandboxMode = true,
+    )
     {
         $this->setMerchantID($merchantID);
         $this->setSecretKey($secretKey);
