@@ -19,9 +19,9 @@ it('can initialize a new payment gateway', function(){
 it('can get payment token, payment url with token, status and message', function(){
     $payment = $this->gateway->create([
         'currencyCode' => 'MMK',
-        'amount' => $this->gateway->amount(1000),
-        'invoiceNo' => $this->gateway->invoiceNo(random_int(11111111, 99999999)),
-        'description' => 'test payment description'
+        'amount' => 1000,
+        'invoiceNo' => random_int(11111111, 99999999),
+        'description' => 'test payment description',
     ]);
 
     expect($payment)->toBeInstanceOf(TokenResponse::class);
