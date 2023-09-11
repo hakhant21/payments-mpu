@@ -36,6 +36,6 @@ it('can get payment inquiry return array of payment inquiry details', function()
         'invoiceNo' => '000024252314'
     ]);
 
-    expect($inquiry->parameters)->toBeArray();
+    expect($inquiry->getInquiry())->toBeArray();
 }); 
 

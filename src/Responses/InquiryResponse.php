@@ -10,4 +10,9 @@ class InquiryResponse
       {
           $this->parameters = $parameters;
       }
+
+      public function getInquiry()
+      {
+          return $this->parameters;
+      }
 }
