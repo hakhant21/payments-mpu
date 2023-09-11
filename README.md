@@ -1,7 +1,7 @@
 # 2C2P Myanmar One Stop Payment Service Integration Package
 
-## Test
-[![Testing](https://github.com/hakhant21/payments-mpu/actions/workflows/main.yml/badge.svg?branch=master&event=push)](https://github.com/hakhant21/payments-mpu/actions/workflows/main.yml)
+
+## [![Testing](https://github.com/hakhant21/payments-mpu/actions/workflows/main.yml/badge.svg?branch=master&event=push)](https://github.com/hakhant21/payments-mpu/actions/workflows/main.yml)
 
 ## Installation
 ```bash
